@@ -37,7 +37,7 @@
 import { ListBox, ListBoxItem, Tab, TabGroup } from '@skeletonlabs/skeleton';
 import Highlight, { LineNumbers } from "svelte-highlight";
 import glsl from "svelte-highlight/languages/glsl";
-import ashes from "svelte-highlight/styles/ashes";
+import ashes from "svelte-highlight/styles/chalk";
 import type { MouseEventHandler } from 'svelte/elements';
 import { LineBasicMaterial, LineDashedMaterial, Material, Mesh, MeshBasicMaterial, MeshDepthMaterial, MeshLambertMaterial, MeshMatcapMaterial, MeshNormalMaterial, MeshPhongMaterial, MeshPhysicalMaterial, MeshStandardMaterial, MeshToonMaterial, PerspectiveCamera, PointsMaterial, Scene, ShaderChunk, ShaderMaterial, SphereGeometry, WebGLRenderer } from 'three';
 import type { WebGLProgramParametersWithUniforms } from 'three/src/Three.js';
