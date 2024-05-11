@@ -2,24 +2,28 @@
   {@html ashes}
 </svelte:head>
 <div class="grid" style="grid-template-columns:auto 1fr">
-<ListBox class="card p-4 h-screen overflow-scroll">
+<ListBox class="card p-4 h-screen overflow-y-scroll">
   {#each materials as material,index }
   <ListBoxItem bind:group={selectedMaterial} name="medium" value={index}>{material.name}</ListBoxItem>
   {/each}
 </ListBox>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="h-screen overflow-y-scroll">
-  <TabGroup>
-    <Tab bind:group={selectedShader} name="fragment" value='fragmentShader'>Fragment shader</Tab>
-    <Tab bind:group={selectedShader} name="Vertex" value='vertexShader'>Vertex shader</Tab>
-    <button 
-      type="button"
-      class="btn variant-filled-surface ml-auto"
-      on:click={()=>unpack = !unpack}
-    >{unpack?'Fold':'Unfold'} all includes</button>
-  </TabGroup>
-  <div on:click|stopPropagation="{click}" >
+<div class="h-screen">
+    
+    <div bind:this={tabs}>
+      <TabGroup >
+        <Tab bind:group={selectedShader} name="fragment" value='fragmentShader'>Fragment shader</Tab>
+        <Tab bind:group={selectedShader} name="Vertex" value='vertexShader'>Vertex shader</Tab>
+        <button
+          type="button"
+          class="btn variant-filled-surface ml-auto"
+          on:click={()=>unpack = !unpack}
+        >{unpack?'Fold':'Unfold'} all includes</button>
+      </TabGroup>
+    </div>
+  
+  <div on:click|stopPropagation="{click}" class="overflow-y-scroll" style={`height: calc(100% - ${tabs?tabs.clientHeight:0}px)`}>
     <Highlight code="{codeReplaced}" let:highlighted language="{glsl}">
        <LineNumbers {highlighted} highlightedLines="{highlightedLines}" wrapLines></LineNumbers>
     </Highlight>
@@ -40,6 +44,7 @@ import type { WebGLProgramParametersWithUniforms } from 'three/src/Three.js';
 import type { Constructor } from 'type-fest';
 import "./app.css";
 let selectedMaterial = 0
+let tabs:HTMLElement|null = null
 const materials:Constructor<Material>[] = [
   LineBasicMaterial,
   LineDashedMaterial,
