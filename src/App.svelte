@@ -3,8 +3,8 @@
 </svelte:head>
 <div class="grid" style="grid-template-columns:auto 1fr">
 <ListBox class="card p-4 h-screen overflow-y-scroll">
-  {#each materials as material,index }
-  <ListBoxItem bind:group={selectedMaterial} name="medium" value={index}>{material.name}</ListBoxItem>
+  {#each Object.entries(materials) as [material],index }
+  <ListBoxItem bind:group={selectedMaterial} name="medium" value={material}>{material}</ListBoxItem>
   {/each}
 </ListBox>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -43,23 +43,23 @@ import { LineBasicMaterial, LineDashedMaterial, Material, Mesh, MeshBasicMateria
 import type { WebGLProgramParametersWithUniforms } from 'three/src/Three.js';
 import type { Constructor } from 'type-fest';
 import "./app.css";
-let selectedMaterial = 0
+let selectedMaterial = 'MeshBasicMaterial'
 let tabs:HTMLElement|null = null
-const materials:Constructor<Material>[] = [
-  LineBasicMaterial,
-  LineDashedMaterial,
-  MeshBasicMaterial,
-  MeshDepthMaterial,
-  MeshLambertMaterial,
-  MeshMatcapMaterial,
-  MeshNormalMaterial,
-  MeshPhongMaterial,
-  MeshPhysicalMaterial,
-  MeshStandardMaterial,
-  MeshToonMaterial,
-  PointsMaterial,
-  ShaderMaterial,
-]
+const materials:Record<string,Constructor<Material>> = {
+  LineBasicMaterial:LineBasicMaterial,
+  LineDashedMaterial:LineDashedMaterial,
+  MeshBasicMaterial:MeshBasicMaterial,
+  MeshDepthMaterial:MeshDepthMaterial,
+  MeshLambertMaterial:MeshLambertMaterial,
+  MeshMatcapMaterial:MeshMatcapMaterial,
+  MeshNormalMaterial:MeshNormalMaterial,
+  MeshPhongMaterial:MeshPhongMaterial,
+  MeshPhysicalMaterial:MeshPhysicalMaterial,
+  MeshStandardMaterial:MeshStandardMaterial,
+  MeshToonMaterial:MeshToonMaterial,
+  PointsMaterial:PointsMaterial,
+  ShaderMaterial:ShaderMaterial,
+}
 
 const getMesh = (Mat:Constructor<Material>)=>{
   switch (Mat){
