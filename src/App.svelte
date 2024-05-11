@@ -1,5 +1,5 @@
 <svelte:head>
-  {@html ashes}
+  {@html chalk}
 </svelte:head>
 <div class="grid" style="grid-template-columns:auto 1fr">
 <ListBox class="card p-4 h-screen overflow-y-scroll">
@@ -37,7 +37,7 @@
 import { ListBox, ListBoxItem, Tab, TabGroup } from '@skeletonlabs/skeleton';
 import Highlight, { LineNumbers } from "svelte-highlight";
 import glsl from "svelte-highlight/languages/glsl";
-import ashes from "svelte-highlight/styles/chalk";
+import chalk from "svelte-highlight/styles/chalk";
 import type { MouseEventHandler } from 'svelte/elements';
 import { LineBasicMaterial, LineDashedMaterial, Material, Mesh, MeshBasicMaterial, MeshDepthMaterial, MeshLambertMaterial, MeshMatcapMaterial, MeshNormalMaterial, MeshPhongMaterial, MeshPhysicalMaterial, MeshStandardMaterial, MeshToonMaterial, PerspectiveCamera, PointsMaterial, Scene, ShaderChunk, ShaderMaterial, SphereGeometry, WebGLRenderer } from 'three';
 import type { WebGLProgramParametersWithUniforms } from 'three/src/Three.js';
